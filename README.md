@@ -32,9 +32,8 @@ echo /home/pi/source/mp4toftp/mp4ToFTP.py > ~/source/ukmon-pitools/extrascript
 
 If you're NOT using the UKMON toolset, you'll need to edit the RMS config file.
 * open the file in an editor
-* find the line containing **external_script_path**
-* replace the value with **/home/pi/source/mp4toftp/mp4ToFTP.py**
-* a few lines above this, change external_script_run to **true**
+* change **external_script_run** to **true**
+* change **external_script_path** to **/home/pi/source/mp4toftp/mp4ToFTP.py**
 * save and exit
 
 Testing and Manual Use
