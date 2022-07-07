@@ -27,15 +27,15 @@ If you're  using the 'extrascript' function in ukmon-pitools (for example to con
 cp ~/source/ukmon-pitools/extrascript ~/source/mp4toftp
 </pre>
 
-Then create or update the *ukmon-pitools* 'extrascript' file so that it calls mp4ToFTP.py:
+Then create or update the *ukmon-pitools* 'extrascript' file so that it calls mp4toFTP.py:
 <pre>
-echo /home/pi/source/mp4toftp/mp4ToFTP.py > ~/source/ukmon-pitools/extrascript
+echo /home/pi/source/mp4toftp/mp4toFTP.py > ~/source/ukmon-pitools/extrascript
 </pre>
 
 ## Testing and Manual Use
 The script can also be tested by passing a single argument which is the dated folder name you want to upload from. For example
 <pre>
-python ~/source/mp4toftp/mp4ToFTP.py UK0006_20220511_043312_012356
+python ~/source/mp4toftp/mp4toFTP.py UK0006_20220511_043312_012356
 </pre>
 You should see some messages in the terminal window, and a logfile is also created in ~/RMS_data/logs. The logfile name starts with ftpu_. Note that any extrascript you've configured will be called. 
 
