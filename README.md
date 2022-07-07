@@ -1,43 +1,38 @@
-README for mp4toftp
-===================
+# README for mp4toftp
 
 This python script is intended to be called as an 'external script' from RMS, the meteor detection
-software.  The script can coexist with other external scripts such as Istrastream or ukmon.
+software to upload the allnight timelapse to an FTP site.  The uploaded file is named {stationid}_latest.mp4, where stationid is the 6-letter RMS station code such as UK0001. 
 
-Installation
-------------
-**Step 1: Download the Software**  
+This script is an *addon* to the ukmon toolset and won't work without that toolset already present. However the script can coexist with other external scripts such as Istrastream.
+
+
+## Installation
+### Step 1: Download the Software
 open a terminal window and type
 <pre>
 cd ~/source  
 git clone https://github.com/markmac99/mp4toftp.git  
 cd mp4toftp  
 </pre>
-**Step 2: Configure the software**
-Edit the configuration file 
+### Step 2: Configure the software
+Edit the configuration file using a text editor, for example
 <pre>
 nano ~/source/mp4toftp/mp4toftp.ini  
 </pre>
-Provide the target folder, server name, username and password for your FTP site, then save and exit the editor. 
+Provide the server name, username, password and target folder for your FTP site, then save and exit the editor. If uploading to the default location just leave the target folder blank. 
 
-If you're contributing to Istrastream copy/paste the following in the terminal window:  
+### Step 3: Adding the Hook to UKMON tools
+If you're  using the 'extrascript' function in ukmon-pitools (for example to contribute to Istrastream), copy the extrascript file from ukmon-pitools to the mp4toftp folder. 
 <pre>
-echo /home/pi/source/RMS/iStream/iStream.py > ~/source/mp4toftp/extrascript
+cp ~/source/ukmon-pitools/extrascript ~/source/mp4toftp
 </pre>
 
-if you're using the UKMON toolset, copy/paste the following in the terminal window:  
+Then create or update the ukmon-pitools 'extrascript' file so that it calls mp4ToFTP.py:
 <pre>
 echo /home/pi/source/mp4toftp/mp4ToFTP.py > ~/source/ukmon-pitools/extrascript
 </pre>
 
-If you're NOT using the UKMON toolset, you'll need to edit the RMS config file.
-* open the file in an editor
-* change **external_script_run** to **true**
-* change **external_script_path** to **/home/pi/source/mp4toftp/mp4ToFTP.py**
-* save and exit
-
-Testing and Manual Use
-----------------------
+## Testing and Manual Use
 The script can also be tested by passing a single argument which is the dated folder name you want to upload from. For example
 <pre>
 python ~/source/mp4toftp/mp4ToFTP.py UK0006_20220511_043312_012356
