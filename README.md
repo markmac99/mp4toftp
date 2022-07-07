@@ -1,7 +1,6 @@
 # README for mp4toftp
 
-This python script is intended to be called as an 'external script' from RMS, the meteor detection
-software to upload the allnight timelapse to an FTP site.  The uploaded file is named {stationid}_latest.mp4, where stationid is the 6-letter RMS station code such as UK0001. 
+This python script is intended to be called as an 'extrascript' from ukmon-pitools to upload the allnight timelapse to an FTP site.  The uploaded file is named {stationid}_latest.mp4, where stationid is the 6-letter RMS station code such as UK0001. 
 
 This script is an *addon* to the ukmon toolset and won't work without that toolset already present. However the script can coexist with other external scripts such as Istrastream.
 
@@ -14,20 +13,21 @@ cd ~/source
 git clone https://github.com/markmac99/mp4toftp.git  
 cd mp4toftp  
 </pre>
-### Step 2: Configure the software
+
+### Step 2: Configure the ftp Connection
 Edit the configuration file using a text editor, for example
 <pre>
 nano ~/source/mp4toftp/mp4toftp.ini  
 </pre>
 Provide the server name, username, password and target folder for your FTP site, then save and exit the editor. If uploading to the default location just leave the target folder blank. 
 
-### Step 3: Adding the Hook to UKMON tools
+### Step 3: Adding the Hook to UKMON-pitools
 If you're  using the 'extrascript' function in ukmon-pitools (for example to contribute to Istrastream), copy the extrascript file from ukmon-pitools to the mp4toftp folder. 
 <pre>
 cp ~/source/ukmon-pitools/extrascript ~/source/mp4toftp
 </pre>
 
-Then create or update the ukmon-pitools 'extrascript' file so that it calls mp4ToFTP.py:
+Then create or update the *ukmon-pitools* 'extrascript' file so that it calls mp4ToFTP.py:
 <pre>
 echo /home/pi/source/mp4toftp/mp4ToFTP.py > ~/source/ukmon-pitools/extrascript
 </pre>
@@ -37,7 +37,7 @@ The script can also be tested by passing a single argument which is the dated fo
 <pre>
 python ~/source/mp4toftp/mp4ToFTP.py UK0006_20220511_043312_012356
 </pre>
-You should see some messages in the terminal window, and a logfile is also created in ~/RMS_data/logs. The logfile name starts with ftpu_
+You should see some messages in the terminal window, and a logfile is also created in ~/RMS_data/logs. The logfile name starts with ftpu_. Note that any extrascript you've configured will be called. 
 
 Questions and Requests
 ----------------------
