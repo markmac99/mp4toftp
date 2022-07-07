@@ -13,15 +13,19 @@ def uploadviaFTP(arch_dir, ftpdets):
     _, mp4name = os.path.split(arch_dir)
     mp4name = mp4name + '.mp4'
     fullname = os.path.join(arch_dir, mp4name)
+    targpth = ftpdets[3]
+    if len(targpth) > 0: 
+        targpth = targpth +'/'
 
     # rename the file to UKxxxx_latest.mp4. 
     newfile =mp4name[:7] + 'latest.mp4'
 
-    print(f'uploading {mp4name} to {ftpdets[1]}@{ftpdets[0]}:{newfile}')
+    print(f'uploading {mp4name} to {ftpdets[1]}@{ftpdets[0]}:{targpth}{newfile}')
     session = ftplib.FTP(ftpdets[0],ftpdets[1],ftpdets[2])
-    file = open(fullname,'rb')                  # file to send
-    session.storbinary(f'STOR {newfile}', file)     # send the file
-    file.close()                                    # close file and FTP
+    if ftpdets[3] != '':
+        session.cwd(ftpdets[3])
+    with open(fullname,'rb') as uplf:                   # file to send
+        session.storbinary(f'STOR {newfile}', uplf)     # send the file
     session.quit()    
     return 
 
@@ -50,6 +54,8 @@ def rmsExternal(cap_dir, arch_dir, config):
             lis = inf.readlines()
         ftpdets = []
         for li in lis:
+            if li[0] == '#':
+                continue
             ftpdets.append(li.split(':')[1].strip())
         uploadviaFTP(arch_dir, ftpdets)
 
