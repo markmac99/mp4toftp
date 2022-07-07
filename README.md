@@ -13,7 +13,8 @@ git clone https://github.com/markmac99/mp4toftp.git
 cd mp4toftp  
 nano mp4toftp.ini  
 </pre>
-Enter the target folder, server name, username and password for your FTP site, then save and exit the editor. 
+
+Now enter the target folder, server name, username and password for your FTP site, then save and exit the editor. 
 
 
 Other Usage
