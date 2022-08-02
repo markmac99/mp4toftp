@@ -4,6 +4,8 @@ This python script is intended to be called as an 'extrascript' from ukmon-pitoo
 
 This script is an *addon* to the ukmon toolset and won't work without that toolset already present. However the script can coexist with other external scripts such as Istrastream.
 
+Uploads can be made with ftp, sftp or ftps (ftp with tls). 
+
 
 ## Installation
 ### Step 1: Download the Software
@@ -19,7 +21,11 @@ Edit the configuration file using a text editor, for example
 <pre>
 nano ~/source/mp4toftp/mp4toftp.ini  
 </pre>
-Provide the server name, username, password and target folder for your FTP site, then save and exit the editor. If uploading to the default location just leave the target folder blank. 
+Provide the server name, username, password and target folder for your FTP site. 
+Select a protocol (FTP, SFTP or FTPS). 
+If uploading to the default location on your server just leave the target folder blank. 
+Then save and exit the editor. 
+
 
 ### Step 3: Adding the Hook to UKMON-pitools
 If you're  using the 'extrascript' function in ukmon-pitools (for example to contribute to Istrastream), copy the extrascript file from ukmon-pitools to the mp4toftp folder. 
